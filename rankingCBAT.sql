@@ -3,7 +3,8 @@ CREATE DATABASE RankingCBAT;
 
 USE RankingCBAT;
 
--- CREATE TABLES
+-- CREATE TABLES:
+    --Não copia
 CREATE TABLE modalidade (
     id_modalidade INT AUTO_INCREMENT PRIMARY KEY,
     nome_modalidade VARCHAR(50) UNIQUE NOT NULL,
@@ -17,6 +18,7 @@ CREATE TABLE modalidade (
     )
 );
 
+    -- Copia
 CREATE TABLE atleta (
     CPF_atleta VARCHAR(11) PRIMARY KEY,
     nome_atleta VARCHAR(50),
@@ -24,6 +26,7 @@ CREATE TABLE atleta (
     idade_atleta DATE
 );
 
+    -- Não copia
 CREATE TABLE campeonato (
     id_campeonato INT AUTO_INCREMENT PRIMARY KEY,
     nome_campeonato VARCHAR(50) UNIQUE NOT NULL,
@@ -44,6 +47,7 @@ CREATE TABLE campeonato (
     cidade_campeonato VARCHAR(50) NOT NULL
 );
 
+    -- Copia
 CREATE TABLE classificacao (
     id INT AUTO_INCREMENT PRIMARY KEY,
     posicao_classificacao TINYINT(2) NOT NULL,
@@ -56,7 +60,7 @@ CREATE TABLE classificacao (
     FOREIGN KEY (id_campeonato) REFERENCES campeonato(id_campeonato)
 );
 
--- INSERTS
+-- INSERTS (copia tudo):
 INSERT INTO
     modalidade (nome_modalidade, metrica_modalidade)
 VALUES
@@ -139,7 +143,7 @@ VALUES
         'Paris'
     );
 
--- EMBARALHADO PELO CHATGPT
+    -- EMBARALHADO PELO CHATGPT
 INSERT INTO
     classificacao (
         posicao_classificacao,
@@ -162,7 +166,7 @@ VALUES
     (2, '68.00', 4, '00000000003', 4),
     (3, '65.50', 4, '00000000004', 4);
 
--- ALTER TABLES
+-- ALTER TABLES (não copia nada):
 ALTER TABLE
     campeonato
 ADD
@@ -176,7 +180,7 @@ ALTER TABLE
 MODIFY
     idade_atleta VARCHAR(10);
 
--- JOINS
+-- JOINS (não copia nada):
 SELECT
     c.posicao_classificacao,
     c.resultado_classificacao,
@@ -198,7 +202,7 @@ FROM
     LEFT JOIN atleta a ON c.CPF_atleta = a.CPF_atleta
     LEFT JOIN campeonato cm ON c.id_campeonato = cm.id_campeonato;
 
--- Subconsultas
+-- Subconsultas (não copia nada):
 SELECT
     nome_atleta
 FROM
@@ -244,7 +248,7 @@ WHERE
             AND c.posicao_classificacao = 1
     );
 
--- Selects
+-- Selects (não copia nada):
 SELECT
     *
 FROM
