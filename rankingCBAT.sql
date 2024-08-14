@@ -78,12 +78,38 @@ INSERT INTO classificacao (posicao_classificacao, resultado_classificacao, id_mo
 (2, '68.00', 4, '00000000003', 4), 
 (3, '65.50', 4, '00000000004', 4);
 
-
 -- ALTER TABLES
-
 ALTER TABLE campeonato ADD descricao TEXT;
 ALTER TABLE campeonato DROP COLUMN descricao;
 ALTER TABLE atleta MODIFY CPF_atleta VARCHAR(14);
+
+-- JOINS
+SELECT 
+    c.posicao_classificacao, 
+    c.resultado_classificacao, 
+    a.nome_atleta, 
+    cm.nome_campeonato
+FROM 
+    classificacao c
+INNER JOIN 
+    atleta a ON c.CPF_atleta = a.CPF_atleta
+INNER JOIN 
+    campeonato cm ON c.id_campeonato = cm.id_campeonato;
+
+
+SELECT 
+    m.nome_modalidade, 
+    c.posicao_classificacao, 
+    a.nome_atleta, 
+    cm.nome_campeonato
+FROM 
+    modalidade m
+LEFT JOIN 
+    classificacao c ON m.id_modalidade = c.id_modalidade
+LEFT JOIN 
+    atleta a ON c.CPF_atleta = a.CPF_atleta
+LEFT JOIN 
+    campeonato cm ON c.id_campeonato = cm.id_campeonato;
 
 
 
